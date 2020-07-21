@@ -138,8 +138,12 @@ def getOriginalSentences(lsOfSent, lsOfPointers, lengthOfSet):
         cap = ptr + length # cap is the top index in DataFrame[ptr:cap]
         subSet = lsOfSent[ptr:cap]
         string = "\n".join(subSet)
-        print(string)
-        print("")
-        #sets.append(subSet)
+        
+        
+        # temp file
         filePath = "sentSamples/set" + str(index) + ".txt"
+        tempFile = open(filePath, "w")
+        tempFile.write(string)
+        tempFile.close()
+        
     
