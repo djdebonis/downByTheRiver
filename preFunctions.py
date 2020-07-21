@@ -83,3 +83,18 @@ def removeEmptyData(lsOfTokensNoStops):
     
     return(newLs)
 
+def writeToFile(newLs):
+    """
+    write the data to a file so I can upload to github without uploading all of the writing.
+    
+    """
+    for sentIndex, sent in enumerate(newLs):
+        for wordIndex, word in enumerate(sent):
+            file = open("salientWords.txt", "a")
+            file.write(word)
+            if wordIndex < (len(sent) - 1):
+                file.write(" ")
+            else:
+                file.write("\n")
+            file.close()
+    
