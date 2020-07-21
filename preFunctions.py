@@ -7,9 +7,20 @@ def openAndRead(infilePathAndName):
     """
     opens a file and returns a long long long string
     
-    :infilePathAndName: string of the path/path/txtFileName.txt from the current directory
+    Parameters
+    ----------
+    infilePathAndName : str
+        `infilePathAndName` is the string containing the filepath to the doc the user would like
+        to read in; it is the relative filepath from the current working directory.
+        
+    Returns
+    -------
+    string : str
+        returns a string with all of the text read in from the .txt document directed by `infilePathAndName`
     
-    :returns
+    See Also
+    --------
+        functions.readData : function tailored to read the specific datasets in this repository
     
     
     """
@@ -20,7 +31,7 @@ def openAndRead(infilePathAndName):
 
 def fixDashes(string):
     """
-    Replaces the dumb & incorrect way I used to write em dashes (followed by a space) and replaces it with the 'correct' way.
+    Replaces the incorrect way I used to write em dashes (followed by a space) and replaces it with the 'correct' way.
     
     """
     
@@ -30,7 +41,7 @@ def fixDashes(string):
 
 def fixDashesTwo(string):
     """
-    Replaces the dumb & incorrect way I used to write em dashes (followed by a space) and replaces it with the 'correct' way.
+    Replaces hyphens with nothing?
     
     """
     
@@ -42,6 +53,8 @@ def tokenizeToSent(newString):
     """
     Uses nltk sent_tokenize to break up the string into a list of strings, one sentence per string.
     
+    See nltk.sent_tokenize
+    
     """
     lsOfSent = sent_tokenize(newString)
     
@@ -50,6 +63,20 @@ def tokenizeToSent(newString):
 def tokenizeToWord(lsOfSent):
     """
     Uses re and nltk to tokenize each string (sentence) in a list into a list of tokens (words).
+    
+    Parameters
+    ----------
+    lsOfSent : list of str(s)
+        `lsOfSent` is a list of strings, where each string is a sentence (one token of the total doc).
+        
+    Returns
+    -------
+    lsOfLsOfToken : list of list(s) of str(s)
+        returns a string with all of the text read in from the .txt document directed by `infilePathAndName`
+    
+    See Also
+    --------
+        functions.readData : function tailored to read the specific datasets in this repository
     
     """
     
@@ -97,4 +124,22 @@ def writeToFile(newLs):
             else:
                 file.write("\n")
             file.close()
+
+def getOriginalSentences(lsOfSent, lsOfPointers, lengthOfSet):
+    """
+    According to the pointers obtained from running a random sample, create len(lsOfPointers) text documents in a folder sentSamples/
+    that store the full sentences.
+    
+    """
+    
+    sets = []
+
+    for index, ptr in enumerate(lsofPointers):
+        cap = ptr + length # cap is the top index in DataFrame[ptr:cap]
+        subSet = lsOfSent[ptr:cap]
+        string = "\n".join(subSet)
+        print(string)
+        print("")
+        #sets.append(subSet)
+        filePath = "sentSamples/set" + str(index) + ".txt"
     
