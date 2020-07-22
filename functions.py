@@ -1,3 +1,6 @@
+import numpy as np
+import pandas as pd
+
 def readData(infilePathAndName):
     """
     Takes in the preprocessed/precleaned wordset that I wrote and returns a list of lists
