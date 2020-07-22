@@ -35,3 +35,32 @@ def uniqueDf(uniqueArr):
     #pring the head
     
     return(unique)
+
+def codeToWord(code, transTable, codeColumn = "type", wordColumn = "word"):
+    row = transTable[transTable[codeColumn] == code]
+    ser = row[wordColumn]
+    word = (ser.values)[0]
+    return(word)
+
+def getPointers(quantity, rangeCap, seed = 120):
+    random.seed(seed)
+    pointers = []
+    
+    for i in range(quantity):
+        ptr = random.randint(0, rangeCap)
+        pointers.append(ptr)
+        
+    return(pointers)
+
+def getWordsFromPtrs(lsOfPtrs, numWords):
+    sets = []
+    
+    for index,ptr in enumerate(lsOfPtrs):
+        cap = ptr + numWords
+        cap = ptr + length # cap is the top index in DataFrame[ptr:cap]
+        tempDf = topThreeWords[ptr:cap]
+        sets.append(tempDf)
+        filePath = "randomSamples/randomSet" + str(index) + ".csv"
+        tempDf.to_csv(filePath)
+       
+    return(sets)
